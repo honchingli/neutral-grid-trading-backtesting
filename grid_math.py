@@ -61,8 +61,35 @@ by this monotonic segment
 eg.
 anchor是 $3000
 触发, $2800, $3000, $3200, $3400
-output: [-1, 0, 1, 2]
+output: [0, 1, 2] (每段segment的起点不算)
 这边每一个数字就是一个k
+
+这边其实应该正好处理了我以下的问题 - 
+如果是线反转，anchor是3000，上升段触发3200，3400，下落触发3400，
+3200，然后open = close，这样岂不是赚不到还给手续费，怎么解
+
+因为不包括起点，
+所以最后停的那条线(触发order的线)不会被重复触发(不会同一条线平仓)
+
+
+
+eg. close(3200) > open (2800) (green candlestick)
+下降段 [2800, 2600]
+上升段 [2600, 2800, 3000, 3200, 3400]
+下降段 [3400, 3200]
+
+实际上被触发的
+下降段 [2600]
+上升段 [2800, 3000, 3200, 3400]
+下降段 [3200]
+
+3600--------------------------
+3400--------------------------
+3200--------------------------
+3000--------------------------
+2800--------------------------
+2600--------------------------
+2400--------------------------
 
 '''
 def enumrate_crossed_levels(seg:Segment, anchor_tick: int, spec: GridSpec)-> List[int]:
@@ -76,7 +103,7 @@ def enumrate_crossed_levels(seg:Segment, anchor_tick: int, spec: GridSpec)-> Lis
     k_min = spec.level_min_k
     k_max = spec.level_max_k
 
-    # upward segment: p_k in (x, y]
+    # upward segment: p_k in (x, y] (不包括起点x)
     if y>x:
         # floor ((x-A)/s) + 1 to floor((y-A)/s)
         k_start = floor_div(x-anchor_tick, step_tick) + 1
@@ -88,7 +115,17 @@ def enumrate_crossed_levels(seg:Segment, anchor_tick: int, spec: GridSpec)-> Lis
             return []
         return list(range(k_start, k_end+1))
     
-    # downward segment: p_k in [y, x)
-    # if y < x:
+    # downward segment: p_k in [y, x) (不包括起点x)
+    if y < x:
+        # ceil((x-A)/s)-1 down tp ceil((y-A)/s)
+        k_start = ceil_div(x - anchor_tick, step_tick) - 1
+        k_end = ceil_div(y-anchor_tick, step_tick)
 
+        # clamp to the risk bounds (not necessary for now)
 
+        if k_start<k_end:
+            return []
+        return list(range(k_start, k_end - 1, -1))
+
+    # Flat segment
+    return []
