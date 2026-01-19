@@ -10,6 +10,9 @@
         <mxCell id="5gc6YqG1W76calqVqPz9-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" value="&lt;div&gt;&lt;div&gt;indicate an action for 1 single trade&lt;/div&gt;&lt;div&gt;either buy or sell, kind of like a signal&lt;/div&gt;&lt;/div&gt;class Action&lt;div&gt;BUY&lt;/div&gt;&lt;div&gt;SELL&lt;/div&gt;" vertex="1">
           <mxGeometry height="140" width="210" x="160" y="130" as="geometry" />
         </mxCell>
+        <mxCell id="5gc6YqG1W76calqVqPz9-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" value="GAP - prev close -&amp;gt; current open (optional)&lt;div&gt;Intrabar - inside the OHLC bar path (paths among inside the bar not gap)&lt;/div&gt;&lt;div&gt;class SegmentType&lt;/div&gt;&lt;div&gt;GAP&lt;/div&gt;&lt;div&gt;INTRABAR&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="210" x="410" y="130" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
