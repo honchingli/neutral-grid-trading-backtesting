@@ -7,6 +7,9 @@
         <mxCell id="8ZZcXtXAas6DzYcnsBYV-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Data Structures - classes&lt;/font&gt;" vertex="1">
           <mxGeometry height="30" width="290" x="290" y="60" as="geometry" />
         </mxCell>
+        <mxCell id="5gc6YqG1W76calqVqPz9-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" value="&lt;div&gt;&lt;div&gt;indicate an action for 1 single trade&lt;/div&gt;&lt;div&gt;either buy or sell, kind of like a signal&lt;/div&gt;&lt;/div&gt;class Action&lt;div&gt;BUY&lt;/div&gt;&lt;div&gt;SELL&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="210" x="160" y="130" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
