@@ -1,17 +1,23 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.3.2">
   <diagram name="Page-1" id="KQSimHfbM9SCp9wvQ-Hu">
-    <mxGraphModel dx="719" dy="430" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1303" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="8ZZcXtXAas6DzYcnsBYV-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Data Structures - classes&lt;/font&gt;" vertex="1">
-          <mxGeometry height="30" width="290" x="290" y="60" as="geometry" />
+          <mxGeometry height="30" width="290" x="700" y="60" as="geometry" />
         </mxCell>
         <mxCell id="5gc6YqG1W76calqVqPz9-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" value="&lt;div&gt;&lt;div&gt;indicate an action for 1 single trade&lt;/div&gt;&lt;div&gt;either buy or sell, kind of like a signal&lt;/div&gt;&lt;/div&gt;class Action&lt;div&gt;BUY&lt;/div&gt;&lt;div&gt;SELL&lt;/div&gt;" vertex="1">
           <mxGeometry height="140" width="210" x="160" y="130" as="geometry" />
         </mxCell>
         <mxCell id="5gc6YqG1W76calqVqPz9-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" value="GAP - prev close -&amp;gt; current open (optional)&lt;div&gt;Intrabar - inside the OHLC bar path (paths among inside the bar not gap)&lt;/div&gt;&lt;div&gt;class SegmentType&lt;/div&gt;&lt;div&gt;GAP&lt;/div&gt;&lt;div&gt;INTRABAR&lt;/div&gt;" vertex="1">
-          <mxGeometry height="140" width="210" x="410" y="130" as="geometry" />
+          <mxGeometry height="140" width="240" x="410" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="5gc6YqG1W76calqVqPz9-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" value="一根K线 (either bullish, bearish candle)&lt;div&gt;class Bar&lt;/div&gt;&lt;div&gt;Open&lt;/div&gt;&lt;div&gt;High&lt;/div&gt;&lt;div&gt;Low&lt;/div&gt;&lt;div&gt;Close&lt;/div&gt;&lt;div&gt;Prev_close (第一根K线不会有)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="210" x="690" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="5gc6YqG1W76calqVqPz9-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" value="&lt;div&gt;&lt;div&gt;A monotonic price move within a bar (or a gap)&lt;/div&gt;&lt;/div&gt;&lt;div&gt;eg. Segment(start_tick=6100, end_tick=5300, seg_type=SegmentType.INTRABAR)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;class Segment&lt;/div&gt;&lt;div&gt;start_tick&lt;br&gt;end_tick&lt;/div&gt;&lt;div&gt;seg_type: SegmentType (either GAP or INTRABAR)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="280" x="940" y="130" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
