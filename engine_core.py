@@ -63,3 +63,14 @@ def flip_action(action: Action) -> Action:
         SELL -> BUY
     """
     return Action.SELL if action == Action.BUY else Action.BUY
+
+"""
+Apply 1 fill/trade to PositionState
+
+Inputs:
+pos: PositionState(mutable)
+    - pos.P: float (net position,  >0 long, <0 short)
+    - pos.entry_tick: Optional[int] (avg entry price in ticks, None if flat/0)
+    - pos.R: float (realized PnL cashflow)
+
+"""
