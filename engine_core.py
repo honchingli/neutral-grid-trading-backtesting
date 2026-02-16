@@ -7,7 +7,8 @@ from grid_types import Action, GridSpec, GridState, PositionState
 
 """
 Default initialization rule for a grid level k when
-it is first seen
+it is first seen (initialization only)
+之后Kth线上的Action，是在价格碰到的时候 翻转的
 
 Input:
 k: int (grid level index)
@@ -21,7 +22,6 @@ k <= 0 -> BUY
 之后可能改成 k==0的话，无Action
 
 """
-
 def default_action_for_level(k:int) -> Action:
     return Action.SELL if k>0 else Action.BUY
 
@@ -50,6 +50,15 @@ def get_or_init_action(grid:GridState, k:int)->Action:
     return action
 
 
+
+"""
+价格碰到Kth线的时候，翻转Action
+Kth线上的Action，是在价格碰到的时候 翻转的
+
+
+当然实际上会更复杂，因为我们只是根据segment去翻转
+而segment不包括起点
+"""
 def flip_action(action: Action) -> Action:
     """
     Flip an action (state-machine transition).

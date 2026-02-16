@@ -7,7 +7,9 @@ from ticks import to_tick, floor_div, ceil_div
 
 
 '''
+网格锚点
 Resolve the grid anchor A (in ticks) for this bar.
+目前阶段只想用FiXED ANCHOR
 
 Inputs:
     spec.anchor_mode: "OPEN" | "PREV_CLOSE" | "FIXED"
@@ -34,6 +36,7 @@ def resolve_anchor_tick(spec:GridSpec, bar:Bar):
         return to_tick(spec.fixed_anchor, spec.tick_size)
     
 '''
+网格价位映射
 compute grid level price p_k in ticks: p_k = anchor + k*step
 
 return/output
@@ -51,6 +54,7 @@ def grid_price_tick(anchor_tick:int, step_tick: int, k:int):
 
 
 '''
+段内触发 level 枚举
 
 这边是处理单个segment, 并且只有一个方向
 
@@ -62,6 +66,7 @@ eg.
 anchor是 $3000
 触发, $2800, $3000, $3200, $3400
 output: [0, 1, 2] (每段segment的起点不算)
+[ 0 - $3000, 1 - $3200, 2 - $3400]
 这边每一个数字就是一个k
 
 这边其实应该正好处理了我以下的问题 - 
@@ -111,6 +116,16 @@ def enumrate_crossed_levels(seg:Segment, anchor_tick: int, spec: GridSpec)-> Lis
         
         # clamp to the risk bounds (not necessary for now)
 
+        '''
+        中途没有触发任何的价格线
+        eg.
+        start = 3200 (6400 ticks)
+        end = 3250 (6500 ticks)
+        step = 200 (400 ticks)
+        k_start = floor_div(6400-6000, )
+        只是起点一开始碰到了 K=1 线 (我们不包括起点碰到的线)
+        之后终点了，也没有碰到别的线
+        '''
         if k_start>k_end:
             return []
         return list(range(k_start, k_end+1))
