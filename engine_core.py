@@ -76,10 +76,43 @@ def flip_action(action: Action) -> Action:
 """
 Apply 1 fill/trade to PositionState
 
+一个大仓位
+(加仓)同方向开单，Net position increase, Avg Entry re-calculate
+- 成本被摊薄，或拉高，加权平均
+(减仓)反方向开单 (量<持仓), Net position decrease, Avg Entry stays the same.
+- 仅结算卖出部分的盈亏，剩余部分原始成本不变
+(全平)反方向开单(量=持仓), Net position归零, Avg Entry N/A
+- 仓位关闭，不再有均价(Avg Entry)
+(反手)反方向开单(量>持仓), Net position方向反转, Avg Entry重置
+- 变为新方向的开仓价
+
+
 Inputs:
 pos: PositionState(mutable)
-    - pos.P: float (net position,  >0 long, <0 short)
+    - pos.P: float (net position;  >0 long, <0 short)
     - pos.entry_tick: Optional[int] (avg entry price in ticks, None if flat/0)
     - pos.R: float (realized PnL cashflow)
+    - pos.fees: float
+action: Action (Buy or Sell)
+qty: float (contracts)
+price_tick: int (fill price in ticks)
+spec: GridSpec (uses tick_size)
+fee: float (fee in quote currency)
+
+Output:
+realized_delta: float
+- Realized PnL from this THIS fill/trade excluding fee
+- (Fee is still applied tp pos.R as a cash outflow)
+
+Side effects:
+updates pos.P, pos.entry_price, pos.R, pos.fees
+
+Rules :
+1) Convert action to signed delta position
+BUY => deltaP = +qty
+SELL => deltaP = -qty
+
+
+    
 
 """
