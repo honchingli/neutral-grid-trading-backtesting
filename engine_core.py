@@ -73,6 +73,7 @@ def flip_action(action: Action) -> Action:
     """
     return Action.SELL if action == Action.BUY else Action.BUY
 
+
 """
 Apply 1 fill/trade to PositionState
 
@@ -88,6 +89,7 @@ Apply 1 fill/trade to PositionState
 
 
 Inputs:
+这个pos 就是 最主要记录一切的states
 pos: PositionState(mutable)
     - pos.P: float (net position;  >0 long, <0 short)
     - pos.entry_tick: Optional[int] (avg entry price in ticks, None if flat/0)
@@ -112,7 +114,21 @@ Rules :
 BUY => deltaP = +qty
 SELL => deltaP = -qty
 
+2) Realized PnL happens only when reducing an existing position(net position=pos.P)
+If pos.P > 0 and deltaP < 0: reducing long
+- realized += close_qty * (fill_price - entry_price)
+If pos.P<0 and deltaP > 0: reducing short
+- realizsed += close_qty * (entry_price - fill_price)
 
-    
+3) Average entry  updates:
+- Opening from flat: entry = fill_price
+- Adding to same-side: weighted average
+- Reducing but staying same-side: entry unchanged
+- Crossing through zero: new entry = fill_price(for the new oppsite position)
+
+4) Fee is subtracted from pos.R(cash outflow), and accumulated in pos.fees
 
 """
+def apply_fill_to_position(pos: PositionState)
+
+
