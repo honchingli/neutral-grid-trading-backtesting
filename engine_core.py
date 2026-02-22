@@ -129,6 +129,8 @@ If pos.P<0 and deltaP > 0: reducing short
 4) Fee is subtracted from pos.R(cash outflow), and accumulated in pos.fees
 
 """
-def apply_fill_to_position(pos: PositionState)
-
+def apply_fill_to_position(pos: PositionState, action: Action,
+                           qty:float, price_tickL int,
+                           spec: GridSpec, fee: float,) -> float:
+    if 
 
