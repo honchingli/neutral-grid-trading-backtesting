@@ -40,7 +40,38 @@ If the segment crosses no levels, returns []
 Side effects:
 - updates grid.next_action[k] (flip at triggered levels k)
 - updates pos (position + pnl + fees)
+
+
+Kubernates / Docker
+CICD
+
+讲flow出来
+project里面放match JD的bullet points
+之后gpt再解释哪些bullet points
+
+gpt在自己的project bullet points上面加上Kubernates / Docker
+(在icc java做的final project变成personal上面加上docker kubernates)
+
+晚上找李彦说flow跟技术
+
+先看Kubernates / Docker，就开始写resume
+
 """
+def process_segment(seg: Segment, bar_index: int, segment_index: int,
+                    anchor_tick: int, spec:GridSpec, grid:GridState,
+                    pos:PositionState)->List[Fill]:
+    fills: List[Fill] = []
+
+    # .step is the price before turning into ticks
+    step_tick = to_tick(spec.step, spec.tick_size)
+    if step_tick <= 0:
+        raise ValueError("step_tick must be > 0")
+    
+    # Ordered list of triggered levels for this segment
+    k_list = enumrate_crossed_levels(seg, anchor_tick, spec)
+
+
+
 
 
 
